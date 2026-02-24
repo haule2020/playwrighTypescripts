@@ -2,9 +2,6 @@ import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './basePage';
 
 export class CartPage extends BasePage {
-    inputOrderData(itemAddedId: string) {
-        throw new Error('Method not implemented.');
-    }
     readonly productElements: Locator;
     readonly placeOrderButton: Locator;
     readonly cartLink: Locator;

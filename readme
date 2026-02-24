@@ -34,5 +34,6 @@ project-root/
   - Tests can run fullyParallel in both CI and Local
   - Tests retry on fisrt failure
 
-  
-
+### Run tests
+- Run all tests in 3 browsers:  npx playwright test
+- Run a specific test file with chrome: npx playwright test --project=chromium ./test/order.spec.ts
