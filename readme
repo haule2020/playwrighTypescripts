@@ -1,0 +1,40 @@
+project-root/
+│
+├── playwright.config.ts        # Playwright configuration
+├── package.json                # Dependencies & scripts
+│
+├── tests/                       # Test files
+│   ├── login.test.ts
+│   ├── cart.test.ts
+│   └── order.test.ts            # Example for homepage/cart etc.
+│
+├── pages/                       # Page Object Models (POMs)
+│   ├── basePage.ts
+│   ├── loginPage.ts
+│   ├── homePage.ts
+│   ├── cartPage.ts
+│   └── orderPage.ts             
+│
+├── testData/                    # Centralized test data in json file to generate multiple tests dynamically
+|
+|
+├── utils/                      # Helpers 
+│   └── alertHelpers.ts 
+│            
+│
+└── fixtures/                   # Custom fixtures 
+    └── authFixture.ts          # Example: pre-authenticated state
+
+
+
+### Keys for isolation, speed, and maintainability
+  - The Page Object Model (POM) is applied to page classes, encapsulate all the messy selectors and UI interactions
+  - Each test runs in a completely separate browser context
+  - Each test runs with indipendent test data
+  - JSON file holds test data (category + product).
+  - Test Loop through JSON to generate multiple tests dynamically.
+  - Validating API Calls Triggered by the UI to monitor network traffic during UI interactions
+  - Test Suites (test.describe): Group related tests for readability and modularity.
+  - Tests can run fullyParallel in both CI and Local
+  
+
