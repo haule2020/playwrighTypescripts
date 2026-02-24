@@ -1,4 +1,4 @@
-import { Page, Locator, expect, request, APIRequestContext } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './basePage';
 
 export class CartPage extends BasePage {
@@ -10,23 +10,15 @@ export class CartPage extends BasePage {
     readonly cartLink: Locator;
     readonly listItems: Locator
 
-
     constructor(page: Page) {
         super(page);
         this.productElements = page.locator('.card-title a');
         this.placeOrderButton = page.locator('button', { hasText: 'Place Order' });
         this.cartLink = page.locator('#cartur');
         this.listItems = page.locator('//*[text() = "Delete"]');
-
     }
 
     async viewCart(itemAddedId: string) {
-        // const responsePromise =
-        //     this.page.waitForResponse(req =>
-        //         req.url().includes('/viewcart') && req.status() === 200
-        //     );
-        // await this.cartLink.click();
-
         const [responsePromise] = await Promise.all([
             this.page.waitForResponse(req =>
                 req.url().includes('/viewcart') && req.status() === 200
@@ -48,14 +40,6 @@ export class CartPage extends BasePage {
 
     async removeProduct(itemAddedId: string) {
         const deleteItemButton = this.page.locator(`//*[@onclick="deleteItem('${itemAddedId}')"]`)
-        //define view card response api 
-        // const responsePromise =
-        //     this.page.waitForResponse(req =>
-        //         req.url().includes('/viewcart') && req.status() === 200
-        //     );
-        // //ckick Delete button
-        // await deleteItemButton.click();
-
         const [responsePromise] = await Promise.all([
             this.page.waitForResponse(req =>
                 req.url().includes('/viewcart') && req.status() === 200
@@ -72,7 +56,6 @@ export class CartPage extends BasePage {
             (item: any) => item.id === itemAddedId
         );
         expect(productExistsInCart).not.toBeTruthy()
-
     }
 
     async openOrderModal() {
