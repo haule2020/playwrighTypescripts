@@ -8,6 +8,7 @@ export class CartPage extends BasePage {
     readonly productElements: Locator;
     readonly placeOrderButton: Locator;
     readonly cartLink: Locator;
+    readonly listItems: Locator
 
 
     constructor(page: Page) {
@@ -15,16 +16,25 @@ export class CartPage extends BasePage {
         this.productElements = page.locator('.card-title a');
         this.placeOrderButton = page.locator('button', { hasText: 'Place Order' });
         this.cartLink = page.locator('#cartur');
+        this.listItems = page.locator('//*[text() = "Delete"]');
 
     }
 
     async viewCart(itemAddedId: string) {
-        const responsePromise =
+        // const responsePromise =
+        //     this.page.waitForResponse(req =>
+        //         req.url().includes('/viewcart') && req.status() === 200
+        //     );
+        // await this.cartLink.click();
+
+        const [responsePromise] = await Promise.all([
             this.page.waitForResponse(req =>
                 req.url().includes('/viewcart') && req.status() === 200
-            );
-        await this.cartLink.click();
-        const response = await responsePromise;
+            ),
+            this.cartLink.click()
+        ]);
+        await expect(this.listItems.first()).toBeVisible();
+        const response = responsePromise;
         expect(response).toBeDefined();
         const responseBody = await response.json()
         const listProductAdded = await responseBody.Items;
@@ -39,12 +49,19 @@ export class CartPage extends BasePage {
     async removeProduct(itemAddedId: string) {
         const deleteItemButton = this.page.locator(`//*[@onclick="deleteItem('${itemAddedId}')"]`)
         //define view card response api 
-        const responsePromise =
+        // const responsePromise =
+        //     this.page.waitForResponse(req =>
+        //         req.url().includes('/viewcart') && req.status() === 200
+        //     );
+        // //ckick Delete button
+        // await deleteItemButton.click();
+
+        const [responsePromise] = await Promise.all([
             this.page.waitForResponse(req =>
                 req.url().includes('/viewcart') && req.status() === 200
-            );
-        //ckick Delete button
-        await deleteItemButton.click();
+            ),
+            await deleteItemButton.click()
+        ]);
 
         const response = await responsePromise;
         expect(response).toBeDefined();

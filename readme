@@ -20,10 +20,6 @@ project-root/
 |
 ├── utils/                      # Helpers 
 │   └── alertHelpers.ts 
-│            
-│
-└── fixtures/                   # Custom fixtures 
-    └── authFixture.ts          # Example: pre-authenticated state
 
 
 
@@ -36,5 +32,7 @@ project-root/
   - Validating API Calls Triggered by the UI to monitor network traffic during UI interactions
   - Test Suites (test.describe): Group related tests for readability and modularity.
   - Tests can run fullyParallel in both CI and Local
+  - Tests retry on fisrt failure
+
   
 

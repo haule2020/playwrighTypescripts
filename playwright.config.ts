@@ -17,8 +17,8 @@ export default defineConfig({
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  /* Retry on CI and local */
+  retries: process.env.CI ? 2 : 1,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 3 : Math.ceil(os.cpus().length / 2),
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -26,18 +26,17 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 
   //run login and share storageState once before all tests
-  globalSetup: require.resolve('./fixtures/sharedAuth.ts'),
+  // globalSetup: require.resolve('./fixtures/sharedAuth.ts'),
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'https://www.demoblaze.com',
     //Store login state
-    storageState: 'playwright/.auth/storageState.json',
+    // storageState: 'playwright/.auth/storageState.json',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    // trace: 'retain-on-failure',
   },
-  metadata: { 
-    APIBaseUrl: 'https://api.example.com', 
-  },
+
   /* Configure projects for major browsers */
   projects: [
     {

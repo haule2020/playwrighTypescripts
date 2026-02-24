@@ -12,6 +12,7 @@ export class HomePage extends BasePage {
         this.productElements = page.locator('.card-title a');
         this.addToCartButton = page.locator('text=Add to cart');
         this.cartLink = page.locator('#cartur');
+
     }
 
     async viewProductPage() {
@@ -62,6 +63,7 @@ export class HomePage extends BasePage {
             ),
             this.addToCartButton.click()
         ]);
+
         const viewcartPayloadString = viewCart.postData();
         expect(viewcartPayloadString).toBeDefined();
         const viewcartPayloadJson = JSON.parse(viewcartPayloadString!);

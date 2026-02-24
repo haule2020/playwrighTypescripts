@@ -14,7 +14,6 @@ test.describe('Add to cart', () => {
       await homePage.viewProductCategory(item.category);
       // Add to cart, get itemAddedId 
       const itemAddedId = await homePage.addTocart(item.product);
-      console.log(itemAddedId)
       // Verify product is in cart
       await cartPage.viewCart(itemAddedId);
     });
