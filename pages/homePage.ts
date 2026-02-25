@@ -31,7 +31,6 @@ export class HomePage extends BasePage {
 
     async viewProductCategory(category: string) {
         const categoryButton = this.page.locator(`//*[@id="itemc" and text()= '${category}']`);
-
         const responsePromise =
             this.page.waitForResponse(req =>
                 req.url().includes('/bycat') && req.status() === 200
@@ -42,20 +41,27 @@ export class HomePage extends BasePage {
         expect(response).toBeDefined();
     }
 
-    async addTocart(product: string): Promise<string> {
+    async viewProduct(data: any) {
+        //Click products, verify api responses
         await expect(this.productElements.first()).toBeVisible()
-
-        //Click on product and check api response status
-        const [viewProduct] = await Promise.all([
+        const viewProduct =
             this.page.waitForResponse(req =>
                 req.url().includes('/view') && req.status() === 200
-            ),
-            await this.page.click(`text=${product}`)
-        ]);
+            );
+        await this.page.click(`text=${data.title}`)
+        const response = await viewProduct;
+        const bodyjson = await response.json()
+        //Verify product details
+        expect(bodyjson.cat).toBe(data.cat)
+        expect(bodyjson.desc).toBe(data.desc)
+        expect(bodyjson.id).toBe(data.id)
+        expect(bodyjson.img).toBe(data.img)
+        expect(bodyjson.price).toBe(data.price)
 
-        const requestPayloadString = JSON.stringify(viewProduct);
-        expect(requestPayloadString).toBeDefined();
+    }
 
+    async addTocart(product: string): Promise<string> {
+    
         //Click add to cart and check api request payload
         const [viewCart] = await Promise.all([
             this.page.waitForRequest(req =>
@@ -63,7 +69,6 @@ export class HomePage extends BasePage {
             ),
             this.addToCartButton.click()
         ]);
-
         const viewcartPayloadString = viewCart.postData();
         expect(viewcartPayloadString).toBeDefined();
         const viewcartPayloadJson = JSON.parse(viewcartPayloadString!);

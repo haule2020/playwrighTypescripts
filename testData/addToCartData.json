@@ -1,14 +1,20 @@
 [
     {
         "category": "Phones",
-        "product": "Samsung galaxy s6"
-    },
-    {
-        "category": "Laptops",
-        "product": "Sony vaio i5"
+        "cat": "phone",
+        "desc": "The Samsung Galaxy S6 is powered by 1.5GHz octa-core Samsung Exynos 7420\n processor and it comes with 3GB of RAM. The phone packs 32GB of \ninternal storage cannot be expanded. ",
+        "id": 1,
+        "img": "imgs/galaxy_s6.jpg",
+        "price": 360,
+        "title": "Samsung galaxy s6"
     },
     {
         "category": "Monitors",
-        "product": "Apple monitor 24"
+        "cat": "monitor",
+        "desc": "LED Cinema Display features a 27-inch glossy LED-backlit TFT \nactive-matrix LCD display with IPS technology and an optimum resolution \nof 2560x1440. It has a 178 degree horizontal and vertical viewing angle,\n a \"typical\" brightness of 375 cd/m2, contrast ratio of 1000:1, and a \n12 ms response time.",
+        "id": 10,
+        "img": "imgs/apple_cinema.jpg",
+        "price": 400.0,
+        "title": "Apple monitor 24"
     }
 ]

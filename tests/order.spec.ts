@@ -8,14 +8,15 @@ import testdata from '../testData/placeOrderData.json';
 test.describe('Place order', () => {
   for (const item of testdata) {
 
-    test(`Place order ${item.product} from ${item.category}`, async ({ page }) => {
+    test(`Place order ${item.title} from ${item.category}`, async ({ page }) => {
       const homePage = new HomePage(page);
       const cartPage = new CartPage(page);
       const orderPage = new OrderPage(page);
 
       await homePage.viewProductPage();
       await homePage.viewProductCategory(item.category);
-      const itemAddedId = await homePage.addTocart(item.product);
+      await homePage.viewProduct(item);
+      const itemAddedId = await homePage.addTocart(item.title);
       await cartPage.viewCart(itemAddedId);
       await cartPage.openOrderModal();
       await orderPage.inputOrderData(customerInfo);
