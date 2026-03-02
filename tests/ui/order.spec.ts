@@ -1,9 +1,9 @@
 import { test } from '@playwright/test';
-import { HomePage } from '../pages/homePage';
-import { CartPage } from '../pages/cartPage';
-import { OrderPage } from '../pages/orderPage';
-import customerInfo from '../testData/customerInfo.json'
-import testdata from '../testData/placeOrderData.json';
+import { HomePage } from '../../pages/homePage';
+import { CartPage } from '../../pages/cartPage';
+import { OrderPage } from '../../pages/orderPage';
+import customerInfo from '../../testData/customerInfo.json'
+import testdata from '../../testData/placeOrderData.json';
 
 test.describe('Place order', () => {
   for (const item of testdata) {
@@ -24,9 +24,3 @@ test.describe('Place order', () => {
     });
   }
 })
-
-
-
-
-
-

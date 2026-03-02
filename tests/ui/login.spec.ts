@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage';
-import { credentials } from '../testData/loginData';
-import { getAndAcceptAlert } from '../utils/alertHelpers';
+import { LoginPage } from '../../pages/loginPage';
+import { credentials } from '../../testData/loginData';
+import { getAndAcceptAlert } from '../../utils/alertHelpers';
 
 //ignores the global storageState
 test.use({ storageState: { cookies: [], origins: [] } });

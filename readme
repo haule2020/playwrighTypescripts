@@ -3,11 +3,15 @@ project-root/
 ├── playwright.config.ts        # Playwright configuration
 ├── package.json                # Dependencies & scripts
 │
-├── tests/                       # Test files
-│   ├── login.test.ts
-│   ├── cart.test.ts
-│   └── order.test.ts            # Example for homepage/cart etc.
+├── tests/
+       ui/                       # UI Test files
+│       ├── login.test.ts
+│       ├── cart.test.ts
+│       └── order.test.ts          
 │
+│       api/                       # API Test files
+│       ├── cart.test.ts
+│       └── order.test.ts  
 ├── pages/                       # Page Object Models (POMs)
 │   ├── basePage.ts
 │   ├── loginPage.ts
@@ -20,6 +24,10 @@ project-root/
 |
 ├── utils/                      # Helpers 
 │   └── alertHelpers.ts 
+│ 
+├── api/                      # api methods and andpoints 
+     ├── apiEndpoints.ts
+     └── cartApiHelpers.ts   
 
 
 
@@ -35,5 +43,6 @@ project-root/
   - Tests retry on fisrt failure
 
 ### Run tests
-- Run all tests in 3 browsers:  npx playwright test
+- Run all ui tests in 3 browsers and api tests 1 time:  npx playwright test
 - Run a specific test file with chrome: npx playwright test --project=chromium ./test/order.spec.ts
+- Run Api test: npx playwright test --project=API

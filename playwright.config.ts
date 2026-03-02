@@ -29,7 +29,7 @@ export default defineConfig({
   // globalSetup: require.resolve('./fixtures/sharedAuth.ts'),
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'https://www.demoblaze.com',
+    // baseURL: 'https://api.demoblaze.com',
     //Store login state
     // storageState: 'playwright/.auth/storageState.json',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
@@ -41,19 +41,28 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Safari'] },
     },
-
+    {
+      name: 'API',
+      testDir: './tests/api',
+      use: {
+          baseURL: 'https://api.demoblaze.com',
+      },
+    },
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

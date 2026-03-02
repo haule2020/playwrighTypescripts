@@ -1,8 +1,7 @@
 import { test } from '@playwright/test';
-import { HomePage } from '../pages/homePage';
-import { CartPage } from '../pages/cartPage';
-import products from '../testData/addToCartData.json';
-
+import { HomePage } from '../../pages/homePage';
+import { CartPage } from '../../pages/cartPage';
+import products from '../../testData/addToCartData.json';
 
 test.describe('Add to cart', () => {
   for (const item of products) {
