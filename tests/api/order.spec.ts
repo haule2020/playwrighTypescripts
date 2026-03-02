@@ -2,7 +2,7 @@
 import { test, expect, request } from '@playwright/test';
 import * as crypto from 'crypto';
 import { CartApiHelper } from '../../api/cartApiHelpers';
-import products from '../../testData/placeOrderData.json';
+import products from '../../testData/api/placeOrderData.json';
 
 
 test.describe('Place order', () => {
@@ -21,7 +21,7 @@ test.describe('Place order', () => {
   });
 
   for (const item of products) {
-    test(`Place order  ${item.title} from ${item.category}`, async () => {
+    test(`Place order  ${item.title} from ${item.cat}`, async () => {
       //Add to cart api
       const addToCartResponse = cartHelper.addToCart(uniqueId, cookie, item.id, false)
       expect((await addToCartResponse).status()).toBe(200)

@@ -1,6 +1,6 @@
 
 import { test, expect, request, APIRequestContext } from '@playwright/test';
-import products from '../../testData/addToCartData.json';
+import products from '../../testData/api/addToCartData.json';
 import * as crypto from 'crypto';
 import { CartApiHelper } from '../../api/cartApiHelpers';
 
@@ -20,7 +20,7 @@ test.describe('Add to cart', () => {
   });
 
   for (const item of products) {
-    test(`Add ${item.title} from ${item.category} to cart`, async () => {
+    test(`Add ${item.title} from ${item.cat} to cart`, async () => {
       //Add to cart api
       const response = cartHelper.addToCart(uniqueId, cookie, item.id, false)
       expect((await response).status()).toBe(200)
